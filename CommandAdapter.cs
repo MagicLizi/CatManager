@@ -14,7 +14,7 @@ namespace CatManager
 
         private int PORT = 4000;
 
-        private string HOST = "127.0.0.1";
+        private string HOST = "139.196.210.143";
 
         private Client _client;
         
@@ -32,7 +32,10 @@ namespace CatManager
         {
             if (_client == null)
             {
-                _client = new Client("139.196.210.143",4000);
+                _client = new Client("Command",HOST, PORT, true,(pkgBytes) =>
+                {
+                    DealCommandWithBytes(pkgBytes);
+                });
                 _client.Connect();   
             }
         }
@@ -48,6 +51,10 @@ namespace CatManager
             if (cType.Equals("sendMsg"))
             {
                 CatAdapter.GetInstance().SendMsg(content);
+            }
+            else if (cType.Equals("call"))
+            {
+                CatAdapter.GetInstance().Call(content);
             }
         }
     }

@@ -14,15 +14,20 @@ namespace CatManager
         private string _host;
 
         private int _port;
-        
-        public Client(string host, int port)
+
+        private bool _needPkgParse;
+
+        private Action<byte[]> _receiveBytesCallback;
+
+        private string _name;
+
+        public Client(string name,string host, int port,bool needPkgPase,Action<byte[]> receiveBytesCallback)
         {
+            _name = name;
             _host = host;
             _port = port;
-            PkgManager.GetInstance().pkgCallback = (pkgBytes) =>
-            {
-                CommandAdapter.GetInstance().DealCommandWithBytes(pkgBytes);
-            };
+            _needPkgParse = needPkgPase;
+            _receiveBytesCallback = receiveBytesCallback;
         }
 
         public void Connect()
@@ -36,13 +41,22 @@ namespace CatManager
             }
         }
 
+        public void Send(byte[] sendBytes)
+        {
+            if (_socket != null)
+            {
+                _socket.Send(sendBytes);
+            }
+        }
+
+
         private void ConnectCallback(IAsyncResult iar)
         {
             Socket client = (Socket)iar.AsyncState;
             try
             {
                 client.EndConnect(iar);
-                Console.WriteLine("connect server success!");
+                Console.WriteLine("connect {0} server success!", _name);
                 Receive(client);  
             }
             catch (Exception e)
@@ -97,7 +111,14 @@ namespace CatManager
                 int bytesRead = client.EndReceive(ar);
                 if (bytesRead > 0)
                 {
-                    PkgManager.GetInstance().parseBytes(state.buffer);
+                    if (_needPkgParse)
+                    {
+                        PkgManager.GetInstance().parseBytes(state.buffer,_receiveBytesCallback);
+                    }
+                    else
+                    {
+                        _receiveBytesCallback(state.buffer);
+                    }
                     
                     StateObject newstate = new StateObject();
                     newstate.workSocket = client;
@@ -107,7 +128,7 @@ namespace CatManager
                 {
                     if (client.Available == 0)
                     {
-                        Console.WriteLine("从服务器断开，请重新连接！");
+                        Console.WriteLine("从服务器{0}断开，请重新连接！", _name);
                         ClearSocket();
                         Connect();
                     }

@@ -9,6 +9,7 @@ namespace CatManager
         public static void Main(string[] args)
         {
            CommandAdapter.GetInstance().ConnectToCommandServer();
+           CatAdapter.GetInstance().ConnectToCat();
            Console.ReadLine();
         }
     }

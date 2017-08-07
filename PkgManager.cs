@@ -16,8 +16,9 @@ namespace CatManager
             return _pkgManager;
         }
         
-        public void parseBytes(byte[] bytes)
+        public void parseBytes(byte[] bytes, Action<byte[]> receiveBytesCallback)
         {
+            pkgCallback = receiveBytesCallback;
             parsePackage(bytes);
         }
 

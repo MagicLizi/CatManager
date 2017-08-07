@@ -1,0 +1,11 @@
+C:\Users\lizi\Desktop\CatManager\obj\Debug\CatManager.exe
+C:\Users\lizi\Desktop\CatManager\obj\Debug\CatManager.pdb
+C:\Users\lizi\Desktop\CatManager\bin\Debug\CatManager.exe
+C:\Users\lizi\Desktop\CatManager\bin\Debug\CatManager.pdb
+C:\Users\lizi\Desktop\CatManager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lizi\Desktop\CatManager\bin\Debug\SuperSocket.ClientEngine.dll
+C:\Users\lizi\Desktop\CatManager\bin\Debug\System.Collections.Immutable.dll
+C:\Users\lizi\Desktop\CatManager\bin\Debug\WebSocket4Net.dll
+C:\Users\lizi\Desktop\CatManager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\lizi\Desktop\CatManager\bin\Debug\System.Collections.Immutable.xml
+C:\Users\lizi\Desktop\CatManager\obj\Debug\CatManager.csprojResolveAssemblyReference.cache
