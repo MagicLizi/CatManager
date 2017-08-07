@@ -63,7 +63,6 @@ namespace CatManager
             {
                 Console.WriteLine("connect error:{0}",e.ToString());
                 ClearSocket();
-                Connect();
             }
         }
         
@@ -129,8 +128,7 @@ namespace CatManager
                     if (client.Available == 0)
                     {
                         Console.WriteLine("从服务器{0}断开，请重新连接！", _name);
-                        ClearSocket();
-                        Connect();
+    
                     }
                 }
             }

@@ -58,8 +58,14 @@ namespace CatManager
         //发送短信命令
         public void SendMsg(JObject obj)
         {
+            GetAllComInfo();
             string mobile = obj["mobile"].ToString();
             string content = obj["content"].ToString();
+            string channelId = "0";
+            if (obj["channelId"]!=null)
+            {
+                channelId = obj["channelId"].ToString();
+            }
             //Console.WriteLine("send msg to : {0} content {1}",mobile,content);   
             JObject commandObj = new JObject();
             commandObj.Add(new JProperty("taskname", "短信任务"));
@@ -70,7 +76,7 @@ namespace CatManager
             commandObj.Add(new JProperty("waittime", 0));
             string cStr = JsonConvert.SerializeObject(commandObj);
             int leng = Encoding.GetEncoding("gbk").GetBytes(cStr.ToCharArray()).Length;
-            string command = "AP$TASK="+leng+",0,"+ cStr;
+            string command = "AP$TASK="+leng+ ","+channelId+"," + cStr;
             Console.WriteLine(command);
             CatSend(command);
         }
@@ -78,16 +84,21 @@ namespace CatManager
         public void Call(JObject obj)
         {
             string mobile = obj["mobile"].ToString();
+            string channelId = "0";
+            if (obj["channelId"] != null)
+            {
+                channelId = obj["channelId"].ToString();
+            }
             JObject commandObj = new JObject();
             commandObj.Add(new JProperty("taskname", "语音任务"));
             commandObj.Add(new JProperty("tasktype", "语音"));
             commandObj.Add(new JProperty("number", mobile));
             commandObj.Add(new JProperty("content", "0,无;0,无;0,无;0,无;0,无;0,无;0,无;0,无;0,无;0,无;0,无;"));
             commandObj.Add(new JProperty("count",1));
-            commandObj.Add(new JProperty("waittime", 2));
+            commandObj.Add(new JProperty("waittime", 0));
             string cStr = JsonConvert.SerializeObject(commandObj);
             int leng = Encoding.GetEncoding("gbk").GetBytes(cStr.ToCharArray()).Length;
-            string command = "AP$TASK=" + leng + ",0," + cStr;
+            string command = "AP$TASK=" + leng + ","+ channelId + "," + cStr;
             Console.WriteLine(command);
             CatSend(command);
 
