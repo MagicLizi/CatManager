@@ -1,0 +1,11 @@
+/Users/MagicLizi/Desktop/CatManager/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/CatManager.pdb
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/CatManager.exe
+/Users/MagicLizi/Desktop/CatManager/obj/Debug/CatManager.exe
+/Users/MagicLizi/Desktop/CatManager/obj/Debug/CatManager.pdb
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/EngineIoClientDotNet.dll
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/Newtonsoft.Json.dll
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/SocketIoClientDotNet.dll
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/SuperSocket.ClientEngine.dll
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/System.Collections.Immutable.dll
+/Users/MagicLizi/Desktop/CatManager/bin/Debug/WebSocket4Net.dll
